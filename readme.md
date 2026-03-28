@@ -27,7 +27,6 @@ docker run -d \
 docker run -d \
   --privileged \
   --cap-add=NET_ADMIN \
-  --sysctl net.ipv4.ip_forward=1 \
   --network host \
   -e VPN_PORT=3000 \
   ghcr.io/poma4ka/openconnect-docker:latest

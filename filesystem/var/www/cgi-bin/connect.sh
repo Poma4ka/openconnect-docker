@@ -29,6 +29,7 @@ if [ -n "$VPN_USER" ] && [ -n "$VPN_PASS" ] && [ -n "$VPN_ADDR" ]; then
     echo "" > "$VPN_LOG_FILE"
 
     echo "$VPN_PASS" | openconnect \
+      --background \
       --timestamp \
       --syslog \
       --passwd-on-stdin \
@@ -36,7 +37,7 @@ if [ -n "$VPN_USER" ] && [ -n "$VPN_PASS" ] && [ -n "$VPN_ADDR" ]; then
       -i "$VPN_TUN" \
       --non-inter \
       $VPN_ARGS \
-      "$VPN_ADDR" > "$VPN_LOG_FILE" 2>&1 < /dev/null &
+      "$VPN_ADDR" > "$VPN_LOG_FILE" 2>&1
 
     for i in $(seq 1 "$VPN_CONNECT_TIMEOUT"); do
       if [ -z "$(pgrep openconnect)" ]; then
