@@ -35,4 +35,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ github.event.repository.name }}:${{ github.ref_name }}
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ github.event.repository.name }}:${{ github.ref_name }}
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ github.event.repository.name }}:latest

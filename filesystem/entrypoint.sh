@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -z "$VPN_PORT" ]; then
+    echo "VPN_PORT required" && exit 1;
+fi
+
 if [ -z "$VPN_TUN" ]; then
     echo "VPN_TUN required" && exit 1;
 fi
@@ -22,7 +26,7 @@ stop() {
 
 trap stop SIGINT SIGTERM
 
-httpd -f -p 80 -h /var/www &
+httpd -f -p $VPN_PORT -h /var/www &
 
 PID="$!"
 
