@@ -18,18 +18,12 @@ fi
 
 stop() {
   echo "Stopping"
-  pkill httpd
-  pkill openconnect
+  pkill -9 -P $(pgrep httpd)
   echo "Stopped"
-  exit 0
 }
 
 trap stop SIGINT SIGTERM
 
 httpd -f -p $VPN_PORT -h /var/www &
 
-PID="$!"
-
-echo "Started. Press Ctrl+C to stop."
-
-wait $PID
+wait $!

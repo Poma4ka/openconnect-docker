@@ -11,7 +11,7 @@ cat <<EOF
 <body style="font-family: sans-serif; padding: 20px;">
     <h2>Статус VPN: $([ -n "$PID" ] && echo "<b style='color:green'>ПОДКЛЮЧЕНО К "$VPN_ADDR" (PID: $PID)</b>" || echo "<b style='color:red'>ОТКЛЮЧЕНО</b>")</h2>
     <form action="/cgi-bin/connect.sh" method="POST">
-        $([ -z "$VPN_ADDR" ] && echo "Адрес: <input type="text" name="VPN_ADDR" required><br><br>")
+        Адрес: <input type="text" value="$VPN_ADDR"  name="VPN_ADDR" required><br><br>
         Логин: <input type="text" value="$VPN_USER" name="VPN_USER" required><br><br>
         Пароль: <input type="password" value="$VPN_PASS" name="VPN_PASS" required><br><br>
         <button type="submit">$([ -n "$PID" ] && echo "Переподключиться" || echo "Подключиться")</button>
